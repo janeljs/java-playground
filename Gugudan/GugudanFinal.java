@@ -8,7 +8,8 @@ public class GugudanFinal {
 		int m = Integer.parseInt(data[1]);
 		
 		for (int j = 1; j <= m; j++) {
-			System.out.println(n + "단:" + n + "x" + j + "=" + n * j);
+			System.out.println(n + "단: " + n + "x" + j + "=" + n * j);
 		}
+		sc.close();
 	}
 }
