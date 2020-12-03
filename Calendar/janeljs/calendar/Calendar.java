@@ -4,32 +4,27 @@ import java.util.Scanner;
 
 public class Calendar {
 
-	
-
 	public static void printCalendar(int year, int month) {
-		System.out.printf("    <<%4d년 %d월>>\n", year, month);
-		System.out.println("SU MO TU WE TH FR SA");
+		System.out.printf("     <<%4d년 %d월>>\n", year, month);
+		System.out.println(" SU MO TU WE TH FR SA");
 		System.out.println("--------------------");
-		
+
 		int temp = 0;
 		for (int i = 1; i <= 5; i++) {
 			for (int j = 1; j <= 7; j++) {
 				int result = temp + j;
-				if (result<10) {
-					System.out.print(" " + result + " ");
+
+				if (month == 2 && result > 28) {
+					break;
 				}
-				else {
-					if (month==2 && result>28) {
-						break;
-					}
-					if (month%2==0 && result>30) {
-						break;
-					}
-					if (result>31) {
-						break;
-					}
-					System.out.print(result + " ");
-					}
+				if (month % 2 == 0 && result > 30) {
+					break;
+				}
+				if (result > 31) {
+					break;
+				}
+				System.out.printf("%3d", result);
+
 				if (j == 7) {
 					temp = i * j;
 				}
