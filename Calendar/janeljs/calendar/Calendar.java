@@ -1,6 +1,8 @@
 package janeljs.calendar;
 
 public class Calendar {
+	public static final int[] LAST_DAYS = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+	public static final int[] LEAP_YEAR_LAST_DAYS = { 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
 	public static void printCalendar(int year, int month) {
 		System.out.printf("     <<%4d년 %d월>>\n", year, month);
@@ -15,29 +17,15 @@ public class Calendar {
 			}
 		}
 		System.out.println();
+		System.out.println();
 	}
 
 	public static int getLastDay(int year, int month) {
 		int lastday = 0;
-
-		if (month % 2 == 0) {
-			if (month != 2) {
-				lastday = 30;
-			} else if (month == 2) {
-				if (year % 4 == 0) {
-					if (year % 100 == 0) {
-						if (year % 400 == 0) {
-							lastday = 29;
-						} else {
-							lastday = 28;
-						}
-					} else {
-						lastday = 29;
-					}
-				}
-			}
+		if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) {
+			lastday = LEAP_YEAR_LAST_DAYS[month - 1];
 		} else {
-			lastday = 31;
+			lastday = LAST_DAYS[month - 1];
 		}
 
 		return lastday;
