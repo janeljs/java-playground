@@ -74,8 +74,8 @@ public class Command {
 		planSave.put(date, newplan);
 
 		try {
-			FileWriter fw = new FileWriter("plan.dat");
-			fw.write(newplan.format + "," + newplan.plan + "," + newplan.location + "," + newplan.guests);
+			FileWriter fw = new FileWriter("plan.dat", true);
+			fw.write(newplan.format + "," + newplan.plan + "," + newplan.location + "," + newplan.guests + "\n");
 			fw.close();
 		} catch (IOException e) {
 			System.out.println("An error occured.");
