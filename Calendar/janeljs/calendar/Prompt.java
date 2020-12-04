@@ -22,7 +22,7 @@ public class Prompt {
 		Command cmds = new Command();
 		
 		boolean isLoop = true;
-		while (true) {
+		while (isLoop) {
 			
 			String cmd = sc.nextLine();
 			switch (cmd) {
