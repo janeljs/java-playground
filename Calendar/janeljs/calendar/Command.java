@@ -1,18 +1,59 @@
 package janeljs.calendar;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Command {
+	static HashMap<Date, PlanItem> planSave = new HashMap<>();
 	public static void cmdRegister(Scanner sc) {
-		PlanItem planItem = new PlanItem();
-		Date date = planItem.planDate(sc);
-		planItem.planItem(sc, date);
 		
+		System.out.println("\n[CREATE] Enter a date (yyyy-MM-dd).");
+		System.out.print("DATE> ");
+		String strDate = sc.nextLine();
+		Date date = null;
+		try {
+			date = new SimpleDateFormat("yyyy-MM-dd").parse(strDate);
+
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		PlanItem newplan = new PlanItem();
+		System.out.println();
+		newplan.planItem(sc, date);
+		newplan.planPlace(sc);
+		System.out.println();
+		newplan.planGuest(sc);
+
+		planSave.put(date, newplan);
+		
+
 	}
 
 	public static void cmdSearch(Scanner sc) {
+		System.out.println("[SEARCH] Enter a date (yyyy-MM-dd).");
+		String searchDate = sc.nextLine();
+		Date date = null;
+		try {
+			date = new SimpleDateFormat("yyyy-MM-dd").parse(searchDate);
 
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		PlanItem result = planSave.get(date);
+		System.out.println("💖 Event: " + result.plan);
+		System.out.println("🗺️ Location: " + result.location);
+		int i = 1;
+		System.out.println("👨‍👩‍👦‍👦 Guest List");
+		for (String x:result.guests) {
+			System.out.println("- Guest" + i + ": "+ x);
+			i ++;
+		}
+		System.out.println();
+		
 	}
 
 	public static void cmdPrintCalendar(Scanner sc) {
