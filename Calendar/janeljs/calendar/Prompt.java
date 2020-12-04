@@ -1,6 +1,6 @@
 package janeljs.calendar;
 
-import java.text.ParseException;
+
 import java.util.Scanner;
 
 public class Prompt {
@@ -12,28 +12,30 @@ public class Prompt {
 		System.out.println("| 3. 달력 보기");
 		System.out.println("| h. 도움말 q. 종료");
 		System.out.println("+----------------------+");
+		System.out.print("SELECT> ");
 	}
 
 	public void runPrompt(Scanner sc) {
 		final String COMMAND_KEYS = "🔮 command (1, 2, 3, h, q)";
 
 		printMenu();
-
+		Command cmds = new Command();
+		
 		boolean isLoop = true;
 		while (true) {
 			
 			String cmd = sc.nextLine();
 			switch (cmd) {
 			case "1":
-				Command.cmdRegister(sc);
+				cmds.cmdRegister(sc);
 				System.out.println(COMMAND_KEYS);
 				break;
 			case "2":
-				Command.cmdSearch(sc);
+				cmds.cmdSearch(sc);
 				System.out.println(COMMAND_KEYS);
 				break;
 			case "3":
-				Command.cmdPrintCalendar(sc);
+				cmds.cmdPrintCalendar(sc);
 				System.out.println(COMMAND_KEYS);
 				break;
 			case "h":
