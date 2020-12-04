@@ -1,6 +1,5 @@
 package janeljs.calendar;
 
-import java.util.HashMap;
 
 public class Calendar {
 	public static final int[] LAST_DAYS = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
@@ -48,7 +47,7 @@ public class Calendar {
 
 	public static void printCalendar(int year, int month) {
 
-		System.out.printf("     <<%4d년 %d월>>\n", year, month);
+		System.out.printf("     🌼%4d년 %d월🌼\n", year, month);
 		System.out.println(" SU MO TU WE TH FR SA");
 		System.out.println(" --------------------");
 

@@ -1,51 +1,58 @@
 package janeljs.calendar;
 
+import java.text.ParseException;
 import java.util.Scanner;
 
 public class Prompt {
 
-	public void runPrompt() {
-		Scanner sc = new Scanner(System.in);
-		
+	public void printMenu() {
+		System.out.println("+----------------------+");
+		System.out.println("| 1. 일정 등록");
+		System.out.println("| 2. 일정 검색");
+		System.out.println("| 3. 달력 보기");
+		System.out.println("| h. 도움말 q. 종료");
+		System.out.println("+----------------------+");
+	}
 
-		while(true) {
-			
-			System.out.println("📆 Please enter the year.");
-			System.out.print("YEAR> ");
-			int year = sc.nextInt();
-			
-			System.out.println("🈷 Please enter a month.");
-			System.out.print("MONTH> ");
-			int month = sc.nextInt();
-			
-			String blank = sc.nextLine();
-			System.out.println("💖 Please enter the first day of the month. (SU, MO, TU, WE, TH, FR, SA)");
-			System.out.print("DAY> ");
-			String firstDay = sc.nextLine();
+	public void runPrompt(Scanner sc) {
+		final String COMMAND_KEYS = "🔮 command (1, 2, 3, h, q)";
 
-			System.out.println(firstDay);
+		printMenu();
 
-			if (month > 12) {
-				System.out.println("❗ 유효한 값이 아닙니다.");
-				month = sc.nextInt();
-			}
-			if (month == -1) {
-				System.out.println("Bye~");
+		boolean isLoop = true;
+		while (true) {
+			
+			String cmd = sc.nextLine();
+			switch (cmd) {
+			case "1":
+				Command.cmdRegister(sc);
+				System.out.println(COMMAND_KEYS);
+				break;
+			case "2":
+				Command.cmdSearch(sc);
+				System.out.println(COMMAND_KEYS);
+				break;
+			case "3":
+				Command.cmdPrintCalendar(sc);
+				System.out.println(COMMAND_KEYS);
+				break;
+			case "h":
+				printMenu();
+				break;
+			case "q":
+				isLoop = false;
+				System.out.println("Have a nice day!");
 				break;
 			}
-			
-			Calendar.printCalendar(year, month, firstDay);
-
 		}
-		System.out.println();
-
-		sc.close();
+		
 	}
 
 	public static void main(String[] args) {
-
+		Scanner sc = new Scanner(System.in);
 		Prompt prompt = new Prompt();
-		prompt.runPrompt();
+		prompt.runPrompt(sc);
+		sc.close();
 
 	}
 
